@@ -3,7 +3,8 @@ import pandas as pd
 
 #reading csv file into pandas with alias pd
 data=pd.read_csv(r'C:\Users\USER1\Desktop\FoodBalanceSheets_E_Africa_NOFLAG.csv',encoding = 'latin-1')
-print(data)
+print(data)#importing pandas as pd
+import pandas as pd
 
 #correlation between element code column and the year 2014
 data['Element Code'].corr(data['Y2014'])
