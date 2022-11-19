@@ -1,0 +1,58 @@
+#importing pandas as pd
+import pandas as pd
+
+#reading csv file into pandas with alias pd
+data=pd.read_csv(r'C:\Users\USER1\Desktop\FoodBalanceSheets_E_Africa_NOFLAG.csv',encoding = 'latin-1')
+print(data)
+
+#correlation between element code column and the year 2014
+data['Element Code'].corr(data['Y2014'])
+
+#correlation between element code column and the year 2015
+data['Element Code'].corr(data['Y2015'])
+
+#correlation between element code column and the year 2016
+data['Element Code'].corr(data['Y2016'])
+
+#correlation between element code column and the year 2017
+data['Element Code'].corr(data['Y2017'])
+
+#correlation between element code column and the year 2018
+data['Element Code'].corr(data['Y2018'])
+
+#grouping the element column by the year 2017 and sorting output in ascending order
+data.groupby('Element')['Y2017'].sum().sort_values()
+
+#grouping the area column by the year 2017 and sorting output in ascending order
+data.groupby('Area')['Y2017'].sum().sort_values()
+
+#Unique countries in dataset
+data.Area.unique()
+
+#rouping element column by the year 2015
+data.groupby('Element')['Y2015'].sum()
+
+#rouping element column by the year 2016
+data.groupby('Element')['Y2016'].sum()
+
+#grouping element column by the year 2017
+data.groupby('Element')['Y2014'].sum()
+
+#grouping element column by the year 2018
+data.groupby('Element')['Y2018'].sum()
+
+#getting the number of rows and columns in dataset
+data.shape
+
+#grouping element Item by the year 2015
+data.groupby('Item')['Y2015'].sum()
+
+#grouping element Item by the year 2018
+data.groupby('Item')['Y2018'].sum()
+
+#number of missing values in Y2014
+data.Y2014.isnull().sum()
+
+my_tuppy = (1,2,5,8)
+
+my_tuppy[2] = 6
