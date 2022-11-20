@@ -3,57 +3,318 @@ import pandas as pd
 
 #reading csv file into pandas with alias pd
 data=pd.read_csv(r'C:\Users\USER1\Desktop\FoodBalanceSheets_E_Africa_NOFLAG.csv',encoding = 'latin-1')
-print(data)#importing pandas as pd
-import pandas as pd
+print(data)
+
+Area Code      Area  Item Code           Item  Element Code  \
+0              4   Algeria       2501     Population           511   
+1              4   Algeria       2501     Population          5301   
+2              4   Algeria       2901    Grand Total           664   
+3              4   Algeria       2901    Grand Total           674   
+4              4   Algeria       2901    Grand Total           684   
+...          ...       ...        ...            ...           ...   
+60938        181  Zimbabwe       2899  Miscellaneous          5142   
+60939        181  Zimbabwe       2899  Miscellaneous           645   
+60940        181  Zimbabwe       2899  Miscellaneous           664   
+60941        181  Zimbabwe       2899  Miscellaneous           674   
+60942        181  Zimbabwe       2899  Miscellaneous           684   
+
+                                      Element             Unit     Y2014  \
+0               Total Population - Both sexes     1000 persons  38924.00   
+1                    Domestic supply quantity      1000 tonnes      0.00   
+2               Food supply (kcal/capita/day)  kcal/capita/day   3377.00   
+3      Protein supply quantity (g/capita/day)     g/capita/day     94.90   
+4          Fat supply quantity (g/capita/day)     g/capita/day     80.06   
+...                                       ...              ...       ...   
+60938                                    Food      1000 tonnes     42.00   
+60939     Food supply quantity (kg/capita/yr)               kg      3.06   
+60940           Food supply (kcal/capita/day)  kcal/capita/day      3.00   
+60941  Protein supply quantity (g/capita/day)     g/capita/day      0.10   
+60942      Fat supply quantity (g/capita/day)     g/capita/day      0.04   
+
+          Y2015     Y2016     Y2017     Y2018  
+0      39728.00  40551.00  41389.00  42228.00  
+1          0.00      0.00      0.00      0.00  
+2       3379.00   3372.00   3341.00   3322.00  
+3         94.35     94.72     92.82     91.83  
+4         79.36     77.40     80.19     77.28  
+...         ...       ...       ...       ...  
+60938     46.00     33.00     19.00     16.00  
+60939      3.33      2.35      1.33      1.08  
+60940      4.00      3.00      1.00      1.00  
+60941      0.11      0.08      0.04      0.04  
+60942      0.05      0.03      0.02      0.01  
+
+[60943 rows x 12 columns]
 
 #correlation between element code column and the year 2014
 data['Element Code'].corr(data['Y2014'])
 
+0.02445681949522173
+
 #correlation between element code column and the year 2015
 data['Element Code'].corr(data['Y2015'])
+
+0.023889199301639918
 
 #correlation between element code column and the year 2016
 data['Element Code'].corr(data['Y2016'])
 
+0.023443997584961344
+
 #correlation between element code column and the year 2017
 data['Element Code'].corr(data['Y2017'])
+
+0.024254007760045798
 
 #correlation between element code column and the year 2018
 data['Element Code'].corr(data['Y2018'])
 
+0.02427857195351951
+
 #grouping the element column by the year 2017 and sorting output in ascending order
 data.groupby('Element')['Y2017'].sum().sort_values()
+
+Element
+Tourist consumption                            91.00
+Fat supply quantity (g/capita/day)          10253.84
+Protein supply quantity (g/capita/day)      11842.45
+Seed                                        24870.14
+Residuals                                   35500.00
+Food supply quantity (kg/capita/yr)         48690.04
+Stock Variation                             54316.91
+Other uses (non-food)                       91645.97
+Losses                                     160614.00
+Export Quantity                            182338.80
+Feed                                       223705.68
+Processing                                 292836.00
+Import Quantity                            294559.09
+Food supply (kcal/capita/day)              454681.00
+Total Population - Both sexes             1112641.00
+Food                                      1258888.28
+Production                                2030056.89
+Domestic supply quantity                  2088198.10
+Name: Y2017, dtype: float64
 
 #grouping the area column by the year 2017 and sorting output in ascending order
 data.groupby('Area')['Y2017'].sum().sort_values()
 
+Area
+Sudan (former)                       0.00
+Ethiopia PDR                         0.00
+Comoros                             59.84
+Seychelles                         442.34
+Sao Tome and Principe            12662.63
+Cabo Verde                       14650.74
+Guinea-Bissau                    19102.77
+Lesotho                          21267.96
+Botswana                         22101.30
+Djibouti                         22729.91
+Gambia                           23154.18
+Gabon                            27979.64
+Liberia                          29342.20
+Namibia                          29874.89
+Central African Republic         29937.00
+Congo                            41181.68
+Togo                             49841.88
+Mauritius                        51114.83
+Eswatini                         54343.33
+Sierra Leone                     55311.33
+Chad                             71594.68
+Rwanda                           73663.69
+Zimbabwe                         75919.34
+Senegal                          95681.15
+Guinea                           98138.87
+Burkina Faso                    101855.07
+Zambia                          103223.77
+Tunisia                         124167.20
+Benin                           124771.22
+Niger                           126707.58
+Madagascar                      131197.73
+Mali                            149928.33
+Mauritania                      156665.46
+Mozambique                      161407.98
+Malawi                          181098.71
+Uganda                          213950.38
+Côte d'Ivoire                   224599.01
+Angola                          229159.57
+Cameroon                        232030.43
+Sudan                           239931.92
+Kenya                           264660.66
+United Republic of Tanzania     322616.85
+Algeria                         325644.27
+Ghana                           337599.06
+Morocco                         388495.36
+Ethiopia                        448683.76
+South Africa                    517590.54
+Egypt                           866379.92
+Nigeria                        1483268.23
+Name: Y2017, dtype: float64
+
 #Unique countries in dataset
 data.Area.unique()
 
+array(['Algeria', 'Angola', 'Benin', 'Botswana', 'Burkina Faso',
+       'Cabo Verde', 'Cameroon', 'Central African Republic', 'Chad',
+       'Comoros', 'Congo', "Côte d'Ivoire", 'Djibouti', 'Egypt',
+       'Eswatini', 'Ethiopia', 'Ethiopia PDR', 'Gabon', 'Gambia', 'Ghana',
+       'Guinea', 'Guinea-Bissau', 'Kenya', 'Lesotho', 'Liberia',
+       'Madagascar', 'Malawi', 'Mali', 'Mauritania', 'Mauritius',
+       'Morocco', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Rwanda',
+       'Sao Tome and Principe', 'Senegal', 'Seychelles', 'Sierra Leone',
+       'South Africa', 'Sudan', 'Sudan (former)', 'Togo', 'Tunisia',
+       'Uganda', 'United Republic of Tanzania', 'Zambia', 'Zimbabwe'],
+      dtype=object)
+      
 #rouping element column by the year 2015
 data.groupby('Element')['Y2015'].sum()
+
+Element
+Domestic supply quantity                  2021493.55
+Export Quantity                            157614.47
+Fat supply quantity (g/capita/day)          10235.74
+Feed                                       225050.22
+Food                                      1232361.10
+Food supply (kcal/capita/day)              453383.00
+Food supply quantity (kg/capita/yr)         49345.13
+Import Quantity                            267018.46
+Losses                                     155439.00
+Other uses (non-food)                       66254.41
+Processing                                 287929.00
+Production                                1947019.39
+Protein supply quantity (g/capita/day)      11833.95
+Residuals                                   30045.00
+Seed                                        23976.82
+Stock Variation                             34910.99
+Total Population - Both sexes             1058081.00
+Tourist consumption                           349.00
+Name: Y2015, dtype: float64
 
 #rouping element column by the year 2016
 data.groupby('Element')['Y2016'].sum()
 
+Element
+Domestic supply quantity                  2044842.70
+Export Quantity                            151920.46
+Fat supply quantity (g/capita/day)          10102.77
+Feed                                       228958.65
+Food                                      1247022.17
+Food supply (kcal/capita/day)              451810.00
+Food supply quantity (kg/capita/yr)         48985.28
+Import Quantity                            286582.78
+Losses                                     157787.00
+Other uses (non-food)                       69563.68
+Processing                                 280631.00
+Production                                1943537.15
+Protein supply quantity (g/capita/day)      11779.69
+Residuals                                   37224.00
+Seed                                        23389.20
+Stock Variation                             33140.12
+Total Population - Both sexes             1085107.00
+Tourist consumption                            89.00
+Name: Y2016, dtype: float64
+
 #grouping element column by the year 2017
 data.groupby('Element')['Y2014'].sum()
+
+Element
+Domestic supply quantity                  1996716.35
+Export Quantity                            150020.64
+Fat supply quantity (g/capita/day)          10225.56
+Feed                                       216927.89
+Food                                      1212332.49
+Food supply (kcal/capita/day)              454257.00
+Food supply quantity (kg/capita/yr)         49650.63
+Import Quantity                            274144.48
+Losses                                     153223.00
+Other uses (non-food)                       78718.13
+Processing                                 282923.00
+Production                                1931287.75
+Protein supply quantity (g/capita/day)      11836.46
+Residuals                                   30149.00
+Seed                                        21922.92
+Stock Variation                             58749.83
+Total Population - Both sexes             1031585.00
+Tourist consumption                           416.00
+Name: Y2014, dtype: float64
 
 #grouping element column by the year 2018
 data.groupby('Element')['Y2018'].sum()
 
+Element
+Domestic supply quantity                  2161192.10
+Export Quantity                            181594.80
+Fat supply quantity (g/capita/day)          10258.69
+Feed                                       233489.68
+Food                                      1303841.28
+Food supply (kcal/capita/day)              455261.00
+Food supply quantity (kg/capita/yr)         49056.85
+Import Quantity                            287997.09
+Losses                                     163902.00
+Other uses (non-food)                       91300.97
+Processing                                 308429.00
+Production                                2075072.89
+Protein supply quantity (g/capita/day)      11833.56
+Residuals                                   34864.00
+Seed                                        25263.14
+Stock Variation                             20577.91
+Total Population - Both sexes             1140605.00
+Tourist consumption                            90.00
+Name: Y2018, dtype: float64
+
 #getting the number of rows and columns in dataset
 data.shape
+
+(60943, 12)
 
 #grouping element Item by the year 2015
 data.groupby('Item')['Y2015'].sum()
 
+Item
+Alcohol, Non-Food        2180.00
+Alcoholic Beverages     98783.72
+Animal Products         11811.73
+Animal fats            200675.72
+Apples and products     10559.15
+                         ...    
+Vegetables, Other      158104.08
+Vegetal Products       107064.17
+Wheat and products     234710.51
+Wine                     4251.81
+Yams                   203151.78
+Name: Y2015, Length: 119, dtype: float64
+
 #grouping element Item by the year 2018
 data.groupby('Item')['Y2018'].sum()
+
+Item
+Alcohol, Non-Food        2293.00
+Alcoholic Beverages     97847.27
+Animal Products         11578.61
+Animal fats            269648.27
+Apples and products      9640.51
+                         ...    
+Vegetables, Other      163987.21
+Vegetal Products       107775.39
+Wheat and products     242645.19
+Wine                     4039.32
+Yams                   221272.09
+Name: Y2018, Length: 119, dtype: float64
 
 #number of missing values in Y2014
 data.Y2014.isnull().sum()
 
-my_tuppy = (1,2,5,8)
+1589
 
+my_tuppy = (1,2,5,8)
+​
 my_tuppy[2] = 6
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+~\AppData\Local\Temp\ipykernel_6556\3917941094.py in <module>
+      1 my_tuppy = (1,2,5,8)
+      2 
+----> 3 my_tuppy[2] = 6
+
+TypeError: 'tuple' object does not support item assignment
+
